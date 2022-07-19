@@ -1,0 +1,30 @@
+<div class="container">
+<div class="row" [ngClass]="english ? 'flex-row-reverse' : 'flex-row'">
+    <div class="col-6">
+        <div class="content text-center ">
+            <img class="cursor w-100  rounded-pill" [src]="product.thumbnail">
+        </div>
+    </div>
+    <div class="col-6  d-flex  flex-column  justify-content-between">
+
+        <h3 class="h2 fw-bolder ">{{product.title}}</h3>
+        <h3 class="h3 fw-bolder ">{{product?.description}}</h3>
+        <!-- <a [href]="__movie.homepage" target="_blank">{{__movie?.homepage}}</a> -->
+        <div>
+
+            <span class="lineT me-3"><i>{{product.price | currency}}</i></span>
+            <span class="text-success h5">{{ product.price - (product.discountPercentage/100 * product.price) |
+                currency}}</span>
+        </div>
+        <div>
+            <button class="btn btn-success me-3">Add To Shopping Cart</button>
+            <span>{{product.stock}} pieces available</span>
+        </div>
+        <h3 class="h6 fw-bolder ">Category : {{product?.category}}</h3>
+    </div>
+</div>
+</div>
+<!-- <div class=" d-flex justify-content-evenly  mt-5 pt-3">
+
+
+</div> -->

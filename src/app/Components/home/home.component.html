@@ -1,0 +1,76 @@
+<nav class="d-flex justify-content-between align-items-start py-4 w-75 mx-auto" [ngClass]="english ? 'flex-row-reverse' : 'flex-row'">
+    <!-- (click)="drawer.toggle()" -->
+    <button (click)="toogleSidaBar()"  class="btn btn-primary" type="button" mat-button>☰</button>
+    <input type="text" class="form-control w-50" placeholder="search" [(ngModel)]="searcItem">
+    <div>
+        <span class="cursor-pointer" *ngIf="!english" (click)="toogleLanguage()">عربي</span>
+        <span class="cursor-pointer" *ngIf="english" (click)="toogleLanguage()">English</span>
+        <button class="btn btn-success ms-3">Login</button>
+    </div>
+</nav>
+<!-- flex-row-reverse -->
+<div  class="container-fluid  mt-4  d-flex" [ngClass]="english ? 'flex-row-reverse' : 'flex-row'">
+    <div *ngIf="sideBar" class="col-2 mt-3 text-center">
+        <p>Accessories</p>
+        <p>Shaving needs</p>
+        <p>Oral Care</p>
+        <p>Facial Care</p>
+        <p>Deodorant</p>
+        <p>Bath & Oil</p>
+    </div>
+    <div class="row  bg-light pb-3">
+        
+        <div class="col-md-6 col-lg-4 col-xl-3 g-3"
+            *ngFor="let product of allProducts |  paginate: { itemsPerPage: 8, currentPage: p } | search:searcItem   ">
+
+            <div class="content bg-white shadow  rounded-3 py-3 px-2 position-relative">
+                <div class="text-center">
+                    <img [routerLink]="['/prodict',product.id]" [src]="product.thumbnail"
+                        class="w-50 rounded-circle mx-auto cursor-pointer" style="height: 200px;">
+                </div>
+                <p [routerLink]="['/prodict',product.id]" class="cursor-pointer">{{product.title}}</p>
+                <p class="lineT "><i>{{product.price | currency}}</i></p>
+                <button
+                    class="position-absolute rounded-pill btn btn-warning btn-sm top-10 right-90">{{product.discountPercentage}}%</button>
+
+                <div class="d-flex justify-content-between  align-items-start">
+                    <p class="h6 text-success">{{ product.price - (product.discountPercentage/100 * product.price) |
+                        currency}}</p>
+                    <button class="btn btn-outline-success btn-sm">Cart</button>
+                </div>
+            </div>
+        </div>
+        <!-- <mat-drawer-container class="example-container bg-white text-black " autosize >
+            <div class="row mx-3 bg-light pb-3  flex-row-reverse">
+                <div *ngFor="let product of allProducts |  paginate: { itemsPerPage: 8, currentPage: p } | search:searcItem   " class="col-md-6 col-lg-4 col-xl-3 g-3">
+                    <div class="content bg-white shadow  rounded-3 py-3 px-2 position-relative">
+                        <div class="text-center">
+                            <img [routerLink]="['/prodict',product.id]" [src]="product.thumbnail" class="w-50 rounded-circle mx-auto cursor-pointer" style="height: 200px;">
+                        </div>
+                        <p [routerLink]="['/prodict',product.id]" class="cursor-pointer">{{product.title}}</p>
+                        <p class="lineT "><i>{{product.price | currency}}</i></p>
+                        <button
+                            class="position-absolute rounded-pill btn btn-warning btn-sm top-10 right-90">{{product.discountPercentage}}%</button>
+        
+                        <div class="d-flex justify-content-between  align-items-start">
+                            <p class="h6 text-success">{{ product.price - (product.discountPercentage/100 * product.price)  | currency}}</p>
+                            <button class="btn btn-outline-success btn-sm">Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <mat-drawer #drawer class=" text-black bg-white" mode="side">
+                <div class="w-100 p-5">
+                    <p class="p-5">aa</p>
+                    <p class="p-5">aa</p>
+                    <p class="p-5">aa</p>
+                    <p class="p-5">aa</p>
+                    <p class="p-5">aa</p>
+                    <p class="p-5">aa</p>
+                </div>
+            </mat-drawer>
+          </mat-drawer-container> -->
+    </div>
+</div>
+
+<pagination-controls class="text-center p-5 " (pageChange)="p = $event"></pagination-controls>
