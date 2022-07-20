@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container pt-5 mt-5">
 <div class="row" [ngClass]="english ? 'flex-row-reverse' : 'flex-row'">
-    <div class="col-6">
+    <div class="col-md-6">
         <div class="content text-center ">
             <img class="cursor w-100  rounded-pill" [src]="product.thumbnail">
         </div>
     </div>
-    <div class="col-6  d-flex  flex-column  justify-content-between">
+    <div class="col-md-6 text-center  d-flex  flex-column  justify-content-between">
 
         <h3 class="h2 fw-bolder ">{{product.title}}</h3>
         <h3 class="h3 fw-bolder ">{{product?.description}}</h3>
